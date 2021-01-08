@@ -1,7 +1,6 @@
 package project
 
 import (
-	"bytes"
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
@@ -34,23 +33,23 @@ func GetAllProducts() ([]Product, error) {
 	return products, nil
 }
 
-func AddProduct() (Product, error) {
-	product := Product{ProductName: "Microphone 3", CategoryId: 1, UnitPrice: 2000.0}
-	jsonProduct, err := json.Marshal(product)
+// func AddProduct() (Product, error) {
+// 	product := Product{ProductName: "Microphone 3", CategoryId: 1, UnitPrice: 2000.0}
+// 	jsonProduct, err := json.Marshal(product)
 
-	response, err := http.Post("http://localhost:3000/products",
-		"application/json;charset=utf-8", bytes.NewBuffer(jsonProduct))
+// 	response, err := http.Post("http://localhost:3000/products",
+// 		"application/json;charset=utf-8", bytes.NewBuffer(jsonProduct))
 
-	if err != nil {
-		return Product{}, err
-	}
+// 	if err != nil {
+// 		return Product{}, err
+// 	}
 
-	defer response.Body.Close()
+// 	defer response.Body.Close()
 
-	bodyBytes, _ := ioutil.ReadAll(response.Body)
+// 	bodyBytes, _ := ioutil.ReadAll(response.Body)
 
-	var productResponse Product
+// 	var productResponse Product
 
-	json.Unmarshal(bodyBytes, &productResponse)
-	return productResponse, nil
-}
+// 	json.Unmarshal(bodyBytes, &productResponse)
+// 	return productResponse, nil
+// }
